@@ -1,5 +1,6 @@
 {{ config(
-    materialized='table'
+    materialized='table',
+    schema='silver'
 ) }}
 
 with base as (
