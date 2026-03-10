@@ -6,18 +6,24 @@
 with base as (
 
     select
-        vendor_id,
-        tpep_pickup_datetime as pickup_datetime,
-        tpep_dropoff_datetime as dropoff_datetime,
-        cast(passenger_count as int) as passenger_count,
-        cast(trip_distance as double) as trip_distance,
-        cast(ratecodeid as int) as rate_code,
-        cast(pulocationid as int) as pickup_location_id,
-        cast(dolocationid as int) as dropoff_location_id,
-        cast(payment_type as int) as payment_type,
-        cast(fare_amount as double) as fare_amount,
-        cast(tip_amount as double) as tip_amount,
-        cast(total_amount as double) as total_amount
+        vendor_name,
+        Trip_Pickup_DateTime as pickup_datetime,
+        Trip_Dropoff_DateTime as dropoff_datetime,
+        cast(Passenger_Count as int) as passenger_count,
+        cast(Trip_Distance as double) as trip_distance,
+        cast(Rate_Code as string) as rate_code,
+        cast(Payment_Type as string) as payment_type,
+        cast(Fare_Amt as double) as fare_amount,
+        cast(Tip_Amt as double) as tip_amount,
+        cast(Total_Amt as double) as total_amount,
+        cast(Start_Lon as double) as start_lon,
+        cast(Start_Lat as double) as start_lat,
+        cast(End_Lon as double) as end_lon,
+        cast(End_Lat as double) as end_lat,
+        cast(store_and_forward as int) as store_and_forward,
+        cast(surcharge as double) as surcharge,
+        cast(mta_tax as double) as mta_tax,
+        cast(Tolls_Amt as double) as tolls_amount
     from {{ ref('br_yellow_taxi') }}
 
 ),
@@ -25,18 +31,24 @@ with base as (
 derived as (
 
     select
-        vendor_id,
+        vendor_name,
         pickup_datetime,
         dropoff_datetime,
         passenger_count,
         trip_distance,
         rate_code,
-        pickup_location_id,
-        dropoff_location_id,
         payment_type,
         fare_amount,
         tip_amount,
         total_amount,
+        start_lon,
+        start_lat,
+        end_lon,
+        end_lat,
+        store_and_forward,
+        surcharge,
+        mta_tax,
+        tolls_amount,
 
         timestampdiff(
             second,
