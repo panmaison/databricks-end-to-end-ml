@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: nyctaxi_dev
+    schema: bronze
+    tables:
+      - name: yellow_taxi_raw

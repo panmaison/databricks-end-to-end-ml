@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: slv_taxi_trips_clean
+    description: Cleaned NYC taxi trips for ML
+
+    columns:
+      - name: pickup_datetime
+        tests:
+          - not_null
+
+      - name: dropoff_datetime
+        tests:
+          - not_null
+
+      - name: trip_duration_minutes
+        tests:
+          - not_null
